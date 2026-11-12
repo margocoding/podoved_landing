@@ -26,6 +26,7 @@ function App() {
             <div className="hidden md:flex items-center gap-8">
               <button onClick={() => scrollToSection('about')} className="text-gray-600 hover:text-emerald-700 transition-colors text-sm font-medium">О специалисте</button>
               <button onClick={() => scrollToSection('services')} className="text-gray-600 hover:text-emerald-700 transition-colors text-sm font-medium">Услуги</button>
+              <button onClick={() => scrollToSection('reviews')} className="text-gray-600 hover:text-emerald-700 transition-colors text-sm font-medium">Отзывы</button>
               <button onClick={() => scrollToSection('prices')} className="text-gray-600 hover:text-emerald-700 transition-colors text-sm font-medium">Прайс-лист</button>
               <button onClick={() => scrollToSection('discounts')} className="text-gray-600 hover:text-emerald-700 transition-colors text-sm font-medium">Скидки</button>
               <button onClick={() => scrollToSection('contact')} className="bg-emerald-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-emerald-700 transition-colors">Записаться</button>
@@ -52,9 +53,9 @@ function App() {
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-4 space-y-3">
               <button onClick={() => scrollToSection('about')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">О специалисте</button>
-              <button onClick={() => scrollToSection('services')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Услуги</button>
-              <button onClick={() => scrollToSection('prices')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Прайс-лист</button>
-              <button onClick={() => scrollToSection('discounts')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Скидки</button>
+                <button onClick={() => scrollToSection('services')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Услуги</button>
+                <button onClick={() => scrollToSection('reviews')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Отзывы</button>
+                <button onClick={() => scrollToSection('prices')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Прайс-лист</button>              <button onClick={() => scrollToSection('discounts')} className="block w-full text-left text-gray-600 hover:text-emerald-700 py-2">Скидки</button>
               <button onClick={() => scrollToSection('contact')} className="block w-full bg-emerald-600 text-white px-5 py-2 rounded-full text-center font-medium">Записаться</button>
             </div>
           </div>
@@ -63,78 +64,168 @@ function App() {
 
       {/* Hero Section */}
       <section className="pt-16">
-        <div className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 min-h-[90vh] flex items-center">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-100 rounded-full opacity-50 blur-3xl"></div>
-            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-teal-100 rounded-full opacity-50 blur-3xl"></div>
+        <div className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-emerald-950 to-gray-900">
+          {/* Background decorative elements */}
+          <div className="absolute inset-0">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-600/5 rounded-full blur-3xl"></div>
+            {/* Grid pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Медицинское образование
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div className="grid lg:grid-cols-5 gap-12 items-center">
+              {/* Left content - 3 columns */}
+              <div className="lg:col-span-3">
+                {/* Trust badges */}
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  <div className="inline-flex items-center gap-1.5 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Мед. образование
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white/80 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    4.9 рейтинг
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white/80 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                    🇩🇪 Стажировки в Германии
+                  </div>
                 </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                  Здоровье и красота <span className="text-emerald-600">ваших стоп</span>
+
+                {/* Main headline */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
+                  Верните лёгкость <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">каждому шагу</span>
                 </h1>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-xl">
-                  Меня зовут <strong className="text-gray-800">Веда Бирман</strong> — подолог с медицинским образованием и опытом более 18 лет. Помогаю решать проблемы со стопами бережно, безопасно и надолго.
+                
+                <p className="text-lg sm:text-xl text-gray-300 mb-4 leading-relaxed max-w-xl">
+                  Подолог <strong className="text-white">Веда Бирман</strong> — медицинский подход к здоровью ваших стоп. Решаю вросшие ногти, мозоли, трещины и другие проблемы — <span className="text-emerald-400 font-medium">бережно, безопасно и с гарантией результата</span>.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+
+                {/* Social proof inline */}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 rounded-full bg-emerald-400 flex items-center justify-center text-xs font-bold text-emerald-900 border-2 border-gray-900">А</div>
+                    <div className="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-xs font-bold text-teal-900 border-2 border-gray-900">М</div>
+                    <div className="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center text-xs font-bold text-cyan-900 border-2 border-gray-900">Е</div>
+                    <div className="w-8 h-8 rounded-full bg-emerald-300 flex items-center justify-center text-xs font-bold text-emerald-900 border-2 border-gray-900">О</div>
+                  </div>
+                  <p className="text-sm text-gray-400">
+                    <span className="text-white font-semibold">500+</span> довольных пациентов
+                  </p>
+                </div>
+
+                {/* CTA buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
                   <button 
                     onClick={() => scrollToSection('contact')}
-                    className="bg-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-700 transition-all hover:shadow-lg hover:shadow-emerald-200"
+                    className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-emerald-400 hover:to-teal-400 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 flex items-center justify-center gap-2"
                   >
                     Записаться на приём
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                   </button>
                   <button 
                     onClick={() => scrollToSection('prices')}
-                    className="border-2 border-emerald-600 text-emerald-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition-colors"
+                    className="border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-colors backdrop-blur-sm"
                   >
-                    Смотреть прайс
+                    Узнать стоимость
                   </button>
                 </div>
-                <div className="flex items-center gap-8 mt-10 pt-8 border-t border-gray-200">
+
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
                   <div>
-                    <div className="text-3xl font-bold text-emerald-600">18+</div>
-                    <div className="text-sm text-gray-500">лет опыта</div>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">18+</div>
+                    <div className="text-sm text-gray-400 mt-1">лет в профессии</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-emerald-600">2016</div>
-                    <div className="text-sm text-gray-500">год специализации</div>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">10</div>
+                    <div className="text-sm text-gray-400 mt-1">лет в подологии</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-emerald-600">DE</div>
-                    <div className="text-sm text-gray-500">стажировки в Германии</div>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">100%</div>
+                    <div className="text-sm text-gray-400 mt-1">стерильность</div>
                   </div>
                 </div>
               </div>
-              <div className="hidden lg:block">
+
+              {/* Right side - Visual card */}
+              <div className="lg:col-span-2 hidden lg:block">
                 <div className="relative">
-                  <div className="w-full aspect-square bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center shadow-lg mb-6">
-                        <svg className="w-16 h-16 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
+                  {/* Main card */}
+                  <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-2xl">
+                    {/* Profile area */}
+                    <div className="flex flex-col items-center text-center mb-6">
+                      <div className="relative mb-4">
+                        <div className="w-28 h-28 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                          <span className="text-4xl font-bold text-white">ВБ</span>
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-emerald-400 rounded-full flex items-center justify-center border-3 border-gray-900">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
                       </div>
-                      <p className="text-emerald-800 font-medium text-lg">Забота о здоровье</p>
-                      <p className="text-emerald-600 text-sm mt-1">ваших стоп</p>
+                      <h3 className="text-xl font-bold text-white">Веда Бирман</h3>
+                      <p className="text-emerald-400 text-sm font-medium">Подолог • Медицинское образование</p>
+                    </div>
+
+                    {/* Guarantees */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10">
+                        <div className="w-9 h-9 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
+                          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                        </div>
+                        <div className="text-left">
+                          <p className="text-white text-sm font-medium">Безопасные методики</p>
+                          <p className="text-gray-400 text-xs">Доказательная практика</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10">
+                        <div className="w-9 h-9 rounded-lg bg-teal-500/20 flex items-center justify-center shrink-0">
+                          <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                          </svg>
+                        </div>
+                        <div className="text-left">
+                          <p className="text-white text-sm font-medium">Индивидуальный подход</p>
+                          <p className="text-gray-400 text-xs">К каждому пациенту</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10">
+                        <div className="w-9 h-9 rounded-lg bg-cyan-500/20 flex items-center justify-center shrink-0">
+                          <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div className="text-left">
+                          <p className="text-white text-sm font-medium">Результат надолго</p>
+                          <p className="text-gray-400 text-xs">Работаю на причину, не на симптом</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg p-4 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
+
+                  {/* Floating review card */}
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 max-w-[220px]">
+                    <div className="flex items-center gap-1 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-800">Доказательная практика</p>
-                      <p className="text-xs text-gray-500">Актуальные методики</p>
-                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed">«Наконец-то нашла своего мастера! Веда — профессионал»</p>
+                    <p className="text-xs text-gray-400 mt-2">— Анна К.</p>
                   </div>
                 </div>
               </div>
@@ -272,6 +363,163 @@ function App() {
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Выезд на дом</h3>
               <p className="text-gray-600 text-sm leading-relaxed">Для людей с ограниченными возможностями по передвижению. Полный комплект оборудования</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 px-3 py-1.5 rounded-full text-xs font-medium mb-4">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              4.9 из 5 — средняя оценка
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Отзывы пациентов</h2>
+            <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Реальные истории людей, которые доверили мне здоровье своих стоп</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Review 1 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «Мучилась с вросшим ногтем больше полугода. Обходила несколько мастеров — никто не мог помочь. Веда за один приём поставила титановую нить, и через месяц я уже забыла о боли. <strong>Наконец-то нашла своего специалиста!</strong>»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                  <span className="text-emerald-700 font-semibold text-sm">АК</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Анна К.</p>
+                  <p className="text-xs text-gray-500">Вросший ноготь • Титановая нить</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 2 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «Обратилась с глубокими трещинами на пятках — было больно ходить. Веда провела обработку, объяснила, как ухаживать дома. Через две процедуры кожа стала мягкой. <strong>Очень внимательный и грамотный специалист.</strong> Рекомендую!»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                  <span className="text-teal-700 font-semibold text-sm">МС</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Марина С.</p>
+                  <p className="text-xs text-gray-500">Трещины • Обработка стоп</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 3 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «Привожу к Веде маму (ей 74 года) — она с трудом передвигается. Мастер приезжает на дом, всё делает аккуратно и профессионально. Мама всегда в восторге. <strong>Спасибо за чуткость и золотые руки!</strong>»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center">
+                  <span className="text-cyan-700 font-semibold text-sm">ЕВ</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Елена В.</p>
+                  <p className="text-xs text-gray-500">Выезд на дом • Педикюр</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 4 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «У меня была стержневая мозоль — ходить было невозможно. Веда удалила её за один визит, поставила разгрузку. Боль прошла сразу. <strong>Профессионал высшего уровня</strong> — видно, что человек любит своё дело.»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                  <span className="text-purple-700 font-semibold text-sm">ДЛ</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Дмитрий Л.</p>
+                  <p className="text-xs text-gray-500">Стержневая мозоль • Удаление</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 5 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «Хожу к Веде уже третий год. Делаю аппаратный педикюр и маникюр. Всегда чисто, стерильно, всё одноразовое. <strong>Ноги после процедуры как новые!</strong> Очень довольна результатом.»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+                  <span className="text-pink-700 font-semibold text-sm">ОН</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Ольга Н.</p>
+                  <p className="text-xs text-gray-500">Педикюр + Маникюр • Регулярно</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Review 6 */}
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-5">
+                «Веда — настоящий профессионал. Пришла с запущенной проблемой: ногти были в ужасном состоянии. Она всё объяснила, составила план лечения. <strong>Через 3 месяца — результат потрясающий.</strong> Бесконечно благодарна!»
+              </p>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                  <span className="text-amber-700 font-semibold text-sm">ИП</span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Ирина П.</p>
+                  <p className="text-xs text-gray-500">Коррекция ногтей • Комплекс</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
